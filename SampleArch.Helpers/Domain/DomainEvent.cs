@@ -6,22 +6,14 @@ using System.Threading.Tasks;
 
 namespace SampleArch.Helpers.Domain
 {
-    public abstract class DomainEvent
+    public static class DomainEvent
     {
-        public string Type { get { return this.GetType().Name; } }
+        public static IEventDispatcher Dispatcher { get; set; }
 
-        public DateTime Created { get; private set; }
-
-        public Dictionary<string, Object> Args { get; private set; }
-
-        public string CorrelationID { get; set; }
-
-        public DomainEvent()
+        public static void Raise<T>(T @event) where T : IDomainEvent
         {
-            this.Created = DateTime.Now;
-            this.Args = new Dictionary<string, Object>();
+            Dispatcher.Dispatch(@event);
         }
 
-        public abstract void Flatten();
     }
 }

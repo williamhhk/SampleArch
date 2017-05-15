@@ -1,4 +1,6 @@
-﻿using SampleArch.Model;
+﻿using SampleArch.Events;
+using SampleArch.Helpers.Domain;
+using SampleArch.Model;
 using SampleArch.Service;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -51,6 +53,20 @@ namespace SampleArch.Controllers
         }
 
         [HttpPost]
+        [Route("Create")]
+        public IHttpActionResult Create(Person person)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            _PersonService.Create(person);
+            DomainEvents.Raise(new PersonCreated { _person = person });
+            return CreatedAtRoute("Get", new { id = person.Id }, person);
+        }
+
+
+        [HttpPost]
         [Route("CreateAsync")]
         public async Task<IHttpActionResult> CreateAsync(Person person)
         {
@@ -59,6 +75,7 @@ namespace SampleArch.Controllers
                 return BadRequest(ModelState);
             }
             await _PersonService.CreateAsync(person);
+            DomainEvents.Raise(new PersonCreated { _person = person } );
             return CreatedAtRoute("GetAsync", new { id = person.Id }, person);
         }
 

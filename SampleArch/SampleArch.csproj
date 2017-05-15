@@ -46,8 +46,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.3.5.0\lib\net40\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=4.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.5.0\lib\net45\Autofac.dll</HintPath>
     </Reference>
     <Reference Include="Autofac.Integration.WebApi, Version=4.0.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.WebApi2.4.0.1\lib\net45\Autofac.Integration.WebApi.dll</HintPath>
@@ -159,6 +159,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\EFModule.cs" />
+    <Compile Include="App_Start\EventHandlerModule.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RepositoryModule.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -196,6 +197,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Events\PersonCreated.cs" />
+    <Compile Include="Events\PersonCreatedHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -270,6 +273,10 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SampleArch.Helpers\SampleArch.Helpers.csproj">
+      <Project>{0EFEC5A6-915F-4CD8-9B42-7746FFDBB590}</Project>
+      <Name>SampleArch.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SampleArch.Model\SampleArch.Model.csproj">
       <Project>{FD50F211-A364-40B7-9439-77085C578B33}</Project>
       <Name>SampleArch.Model</Name>

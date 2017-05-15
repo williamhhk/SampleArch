@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace SampleArch.Helpers.Domain
 {
-    public interface Handles<T>
-        where T : DomainEvent
+    public interface IEventDispatcher
     {
-        void Handle(T args);
+        void Dispatch<TEvent>(TEvent eventToDispatch) where TEvent : IDomainEvent;
     }
 }

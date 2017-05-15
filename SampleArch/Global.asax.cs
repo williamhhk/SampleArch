@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Autofac.Integration.WebApi;
 using SampleArch.App_Start;
+using SampleArch.Helpers.Domain;
 using System.Reflection;
 using System.Web.Http;
 using System.Web.Mvc;
@@ -23,14 +24,16 @@ namespace SampleArch
 
             //Autofac Configuration
             var builder = new ContainerBuilder();
-           
             builder.RegisterApiControllers(Assembly.GetExecutingAssembly());
             builder.RegisterModule(new RepositoryModule());
             builder.RegisterModule(new ServiceModule());
             builder.RegisterModule(new EFModule());
+            builder.RegisterModule(new EventHandlerModule());
             var container = builder.Build();
+            DomainEvents.Dispatcher = new EventDispatcher(container);
             //DependencyResolver.SetResolver(new AutofacWebApiDependencyResolver(container));
             GlobalConfiguration.Configuration.DependencyResolver = new AutofacWebApiDependencyResolver(container);
+
         }
     }
 }
