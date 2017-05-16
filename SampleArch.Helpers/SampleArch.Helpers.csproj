@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Domain\DeferredDomainEvents.cs" />
+    <Compile Include="Domain\DeferredEventDispatcher.cs" />
     <Compile Include="Domain\DomainEvent.cs" />
     <Compile Include="Domain\DomainEvents.cs" />
     <Compile Include="Domain\EventDispatcher.cs" />

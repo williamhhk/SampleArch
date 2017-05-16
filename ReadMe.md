@@ -7,3 +7,11 @@ http://www.zankavtaskin.com/2013/09/applied-domain-driven-design-ddd-part-1.html
 https://github.com/FutureProcessing/Microservices---ASP.NET-Web-API---Azure/tree/market_management_service_impl/MarketFinder.CommonHost
 
 http://www.tonytruong.net/domain-events-pattern-example/
+
+
+
+Using Autofac for DI.
+
+1)  Add Events
+2)  Add Event Handler
+3)	Add Dispatcher

@@ -1,4 +1,5 @@
 ﻿using Autofac;
+using SampleArch.Helpers.Domain;
 using System.Linq;
 using System.Reflection;
 
@@ -12,9 +13,9 @@ namespace SampleArch.App_Start
                    .Where(t => t.Name.EndsWith("Handler"));
 
             builder.RegisterAssemblyTypes(Assembly.Load("SampleArch"))
-                   .Where(t => t.Name.EndsWith("Handler"))
-                   .AsImplementedInterfaces()
-                  .InstancePerLifetimeScope();
+                    .Where(t => !t.IsAbstract && t.GetInterfaces().Any(i=> i.IsGenericType && i.GetGenericTypeDefinition().Equals(typeof(IDomainHandler<>))))
+                    .AsImplementedInterfaces()
+                    .InstancePerLifetimeScope();
         }
     }
 
